@@ -1,0 +1,26 @@
+{
+  "name": "claude-oauth-proxy",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker that provides OAuth proxy for Claude Pro/Max subscriptions",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "r2:create": "wrangler r2 bucket create oauth-proxy-tokens",
+    "tail": "wrangler tail"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "claude",
+    "anthropic",
+    "oauth",
+    "proxy"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241127.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^3.99.0"
+  }
+}

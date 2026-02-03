@@ -1,0 +1,27 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "claude-oauth-proxy",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-12-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // R2 bucket for token storage
+  "r2_buckets": [
+    {
+      "binding": "TOKEN_STORE",
+      "bucket_name": "oauth-proxy-tokens"
+    }
+  ],
+
+  // Required secrets (set via `wrangler secret put`):
+  // - ADMIN_SECRET: Secret key for admin endpoints
+
+  "vars": {
+    // Anthropic/Claude OAuth settings (using Claude Code's public client ID)
+    "CLAUDE_CLIENT_ID": "9d1c250a-e61b-44d9-88ed-5944d1962f5e",
+    "CLAUDE_SCOPES": "org:create_api_key user:profile user:inference",
+    
+    // Default provider
+    "DEFAULT_PROVIDER": "claude"
+  }
+}

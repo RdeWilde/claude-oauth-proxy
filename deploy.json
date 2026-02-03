@@ -1,0 +1,27 @@
+{
+  "$schema": "https://deploy.workers.cloudflare.com/schemas/deploy.json",
+  "name": "claude-oauth-proxy",
+  "description": "OAuth proxy for Claude Pro/Max subscriptions - use your subscription as an API endpoint",
+  "icon": "https://raw.githubusercontent.com/RdeWilde/claude-oauth-proxy/main/icon.png",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-12-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "r2_buckets": [
+    {
+      "binding": "TOKEN_STORE",
+      "bucket_name": "oauth-proxy-tokens"
+    }
+  ],
+  "secrets": [
+    {
+      "name": "ADMIN_SECRET",
+      "description": "Secret key for admin endpoints (logout). Generate with: openssl rand -base64 32"
+    }
+  ],
+  "vars": {
+    "CLAUDE_CLIENT_ID": "9d1c250a-e61b-44d9-88ed-5944d1962f5e",
+    "CLAUDE_SCOPES": "org:create_api_key user:profile user:inference",
+    "DEFAULT_PROVIDER": "claude"
+  },
+  "post_deploy_message": "✅ Deployed! Next steps:\n1. Create R2 bucket: npx wrangler r2 bucket create oauth-proxy-tokens\n2. Set admin secret: npx wrangler secret put ADMIN_SECRET\n3. Visit your Worker URL and click 'Login with Claude'"
+}
